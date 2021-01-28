@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajax</title>
+  </head>
+  <body>
+    <h2>XMLHttp Request</h2>
+    <p id="message"></p>
+  </body>
+
+  <script>
+    const xhr = new XMLHttpRequest();
+    (method = "GET"), (url = "plain.txt");
+
+    xhr.open(method, url, true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        const status = xhr.status;
+        if (status === 0 || (status >= 200 && status < 400)) {
+          // The request has been completed successfully
+          document.getElementById("message").textContent = xhr.responseText;
+        } else {
+          // Oh no! There has been an error with the request!
+        }
+      }
+    };
+    xhr.send();
+  </script>
+</html>

@@ -1,0 +1,8 @@
+Hi how is it going
+
+request stages
+0= unsent
+1= opened
+2=Headers_recieved
+3=loading
+4=done

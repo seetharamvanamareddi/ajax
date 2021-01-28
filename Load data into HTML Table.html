@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table id="rankings-table" class="table">
+      <thead>
+        <tr>
+          <th>Ranking</th>
+          <th>Full name</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- <tr>
+          <td>1</td>
+          <td>James</td>
+          <td>100</td>
+        </tr>
+      </tbody>
+
+      <tbody>
+        <tr>
+          <td>2</td>
+          <td>John</td>
+          <td>90</td>
+        </tr>
+      </tbody>
+
+      <tbody>
+        <tr>
+          <td>3</td>
+          <td>Jack</td>
+          <td>77</td>
+        </tr> -->
+      </tbody>
+    </table>
+
+    <script>
+      const rankingsBody = document.querySelector("#rankings-table > tbody");
+
+      function loadRankings() {
+        const request = new XMLHttpRequest();
+        (method = "GET"), (url = "rankings.json");
+
+        request.open(method, url, true);
+        request.onload = function () {
+          try {
+            const json = JSON.parse(request.responseText);
+            ranking(json);
+          } catch (e) {
+            console.log("Oh no! There has been an error with the request!");
+          }
+        };
+        request.send();
+      }
+
+      function ranking(json) {
+        console.log(json);
+        // clears existing table data
+        while (rankingsBody.firstChild) {
+          rankingsBody.removeChild(rankingsBody.firstChild);
+        }
+
+        // Populate table
+        json.forEach((row) => {
+          const tr = document.createElement("tr");
+          row.forEach((cell) => {
+            const td = document.createElement("td");
+            td.textContent = cell;
+            tr.appendChild(td);
+          });
+          rankingsBody.appendChild(tr);
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadRankings();
+      });
+    </script>
+  </body>
+</html>
